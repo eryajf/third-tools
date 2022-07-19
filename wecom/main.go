@@ -9,9 +9,9 @@ import (
 )
 
 const (
-	CorpID     = "wwc6656f03c222fd11"
+	CorpID     = "xxxxxx"
 	AgentID    = 1000003
-	CorpSecret = "vhgdQfGS7pM46O40oSK8GBFTcDH_N3gkN5ZJJfOMpog"
+	CorpSecret = "xxxxxxxxxxxxx"
 )
 
 func WeComClient() *wecom.Client {
@@ -51,7 +51,7 @@ func main() {
 		fmt.Printf("get all user failed: %v\n", err)
 	}
 	for _, user := range users {
-		fmt.Println("分组信息:", user)
+		fmt.Println("用户信息:", user.Department)
 	}
 }
 
