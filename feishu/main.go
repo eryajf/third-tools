@@ -31,6 +31,14 @@ func main() {
 	for _, user := range users {
 		fmt.Println("分组信息:", user)
 	}
+
+	ids, err := GetLeaveUserIds()
+	if err != nil {
+		fmt.Printf("获取离职人员ID列表失败: %v\n", err)
+	}
+	for _, id := range ids {
+		fmt.Println(id)
+	}
 }
 
 func GetDepts() (depts []*lark.GetDepartmentListRespItem, err error) {
@@ -88,4 +96,21 @@ func GetUsers() (users []*lark.GetUserListRespItem, err error) {
 		}
 	}
 	return
+}
+
+// 官方文档： https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/ehr/ehr-v1/employee/list
+// GetLeaveUserIds 获取离职人员ID列表
+func GetLeaveUserIds() ([]string, error) {
+	var ids []string
+	users, _, err := FeishuClient().EHR.GetEHREmployeeList(context.TODO(), &lark.GetEHREmployeeListReq{
+		Status:     []int64{5},
+		UserIDType: lark.IDTypePtr(lark.IDTypeUnionID), // 只查询unionID
+	})
+	if err != nil {
+		return nil, err
+	}
+	for _, user := range users.Items {
+		ids = append(ids, user.UserID)
+	}
+	return ids, nil
 }
