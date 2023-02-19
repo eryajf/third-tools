@@ -19,3 +19,13 @@
 - 飞书部门以及员工数据获取的校验
 - 企业微信部门以及员工数据获取的校验
 - email发信的校验
+- go客户端交互--consul
+- go客户端交互--etcd
+- go客户端交互--ftp
+- go客户端交互--github
+- go客户端交互--harbor
+- go客户端交互--jwt
+- go客户端交互--mongodb
+- go客户端交互--nacos
+- go客户端交互--pinyin
+- go客户端交互--qrcode
